@@ -60,8 +60,18 @@ async function run() {
       res.send(result);
     })
 
-    app.put('/toys/:id', async(req, res) => {
+    app.patch('/toys/:id', async(req, res) => {
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id) }
       const updatedToy = req.body;
+      console.log(updatedToy);
+      const updateDoc = {
+        $set: {
+          status: updatedToy.status
+        },
+      };
+      const result = await toyCollection.updateOne(filter, updateDoc);
+      res.send(result);
       
   })
 
