@@ -60,6 +60,11 @@ async function run() {
       res.send(result);
     })
 
+    app.put('/toys/:id', async(req, res) => {
+      const updatedToy = req.body;
+      
+  })
+
     app.delete('/toys/:id', async(req,res) =>{
       const id = req.params.id;
       const query = { _id: new ObjectId(id) }
