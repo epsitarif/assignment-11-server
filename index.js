@@ -40,7 +40,14 @@ async function run() {
       const id = req.params.id 
       const filter = {_id:new ObjectId(id)}
       const result = await toyCollection.findOne(filter)
-      res.send(result)
+      res.send(result);
+    })
+
+    app.post('/toys', async(req, res) =>{
+      const newToys = req.body;
+      console.log(newToys);
+      const result = await toyCollection.insertOne(newToys);
+      res.send(result);
     })
 
     // Send a ping to confirm a successful connection
